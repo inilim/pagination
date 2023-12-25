@@ -2,25 +2,26 @@
 
 namespace Inilim\Pagination;
 
+use Inilim\Pagination\ResultPagination;
+
 class Pagination
 {
     /**
      * @param integer $cur_page текущая страница
      * @param integer $limit количество записей на одну страницу
      * @param integer $count_record общее количество записей
-     * @return array{count_page:int,count_record:int,limit:int,offset:int,cur_page:int,is_last_page:bool,is_first_page:bool}
      */
-    public function getAll(int $cur_page, int $limit, int $count_record): array
+    public function getAll(int $cur_page, int $limit, int $count_record): ResultPagination
     {
-        return [
-            'count_page'    => $count_page = $this->getCountPage($limit, $count_record),
-            'count_record'  => $count_record,
-            'limit'         => $limit,
-            'cur_page'      => $cur_page = $this->getValidCurPage($cur_page, $count_page),
-            'offset'        => $this->getOffset($cur_page, $count_record, $limit),
-            'is_last_page'  => $this->isLastPage($cur_page, $count_page),
-            'is_first_page' => $this->isFirstPage($cur_page),
-        ];
+        return new ResultPagination(
+            count_page: $count_page = $this->getCountPage($limit, $count_record),
+            count_record: $count_record,
+            limit: $limit,
+            cur_page: $cur_page = $this->getValidCurPage($cur_page, $count_page),
+            offset: $this->getOffset($cur_page, $count_record, $limit),
+            is_last_page: $this->isLastPage($cur_page, $count_page),
+            is_first_page: $this->isFirstPage($cur_page),
+        );
     }
 
     /**
