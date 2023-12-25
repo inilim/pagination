@@ -16,8 +16,8 @@ class Pagination
             'count_page'    => $count_page = $this->getCountPage($limit, $count_record),
             'count_record'  => $count_record,
             'limit'         => $limit,
-            'offset'        => $this->getOffset($cur_page, $count_record, $limit),
             'cur_page'      => $cur_page = $this->getValidCurPage($cur_page, $count_page),
+            'offset'        => $this->getOffset($cur_page, $count_record, $limit),
             'is_last_page'  => $this->isLastPage($cur_page, $count_page),
             'is_first_page' => $this->isFirstPage($cur_page),
         ];
