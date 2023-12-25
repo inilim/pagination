@@ -10,6 +10,8 @@ readonly class ResultPagination
         public int $limit,
         public int $cur_page,
         public int $offset,
+        public ?int $next_page,
+        public ?int $prev_page,
         public bool $is_last_page,
         public bool $is_first_page,
     ) {

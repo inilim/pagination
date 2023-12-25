@@ -19,9 +19,25 @@ class Pagination
             limit: $limit,
             cur_page: $cur_page = $this->getValidCurPage($cur_page, $count_page),
             offset: $this->getOffset($cur_page, $count_record, $limit),
+            next_page: $this->nextPage($cur_page, $count_page),
+            prev_page: $this->prevPage($cur_page, $count_page),
             is_last_page: $this->isLastPage($cur_page, $count_page),
             is_first_page: $this->isFirstPage($cur_page),
         );
+    }
+
+    public function nextPage(int $cur_page, int $count_page): ?int
+    {
+        $cur_page = $this->getValidCurPage($cur_page, $count_page);
+        if ($cur_page === $count_page || $count_page === 1) return null;
+        return $cur_page + 1;
+    }
+
+    public function prevPage(int $cur_page, int $count_page): ?int
+    {
+        $cur_page = $this->getValidCurPage($cur_page, $count_page);
+        if ($cur_page === 1) return null;
+        return $cur_page - 1;
     }
 
     /**
