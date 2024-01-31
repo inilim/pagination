@@ -14,8 +14,8 @@ class Pagination
     public function getAll(int $cur_page, int $limit, int $count_record): ResultPagination
     {
         $cur_page     = $this->prepareCurPage($cur_page);
-        $limit        = abs($limit);
-        $count_record = abs($count_record);
+        $limit        = \abs($limit);
+        $count_record = \abs($count_record);
 
         return new ResultPagination(
             count_page: $count_page = $this->getCountPage($limit, $count_record),
@@ -62,9 +62,9 @@ class Pagination
      */
     public function getCountPage(int $limit, int $count_record): int
     {
-        $limit        = abs($limit);
-        $count_record = abs($count_record);
-        $c = intval(ceil(intval($count_record) / $limit));
+        $limit        = \abs($limit);
+        $count_record = \abs($count_record);
+        $c = \intval(\ceil(\intval($count_record) / $limit));
         return $c === 0 ? 1 : $c;
     }
 
@@ -78,7 +78,7 @@ class Pagination
     public function getOffset(int $cur_page, int $count_page, int $limit): int
     {
         $cur_page = $this->getValidCurPage($cur_page, $count_page);
-        $limit  = abs($limit);
+        $limit  = \abs($limit);
         $offset = ($cur_page * $limit) - $limit;
         return $offset < 0 ? 0 : $offset;
     }
@@ -133,7 +133,7 @@ class Pagination
      */
     protected function prepareCountPage(int $count_page): int
     {
-        $count_page = abs($count_page);
+        $count_page = \abs($count_page);
         return $count_page === 0 ? 1 : $count_page;
     }
 }
