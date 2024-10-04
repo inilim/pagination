@@ -9,5 +9,5 @@ Dump::init();
 
 $pag = new Pagination;
 
-$res = $pag->getAll(1, 10, 1);
+$res = $pag->getAll(1, 2, 10);
 de($res);

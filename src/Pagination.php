@@ -8,16 +8,17 @@ final class Pagination
 {
     public function getAll(int $curPage, int $limitOnePage, int $countRecords): ResultPagination
     {
-        $curPage      = $this->prepareCurPage($curPage);
         $limitOnePage = \abs($limitOnePage);
         $countRecords = \abs($countRecords);
+        $countPages   = $this->getCountPages($limitOnePage, $countRecords);
+        $curPage      = $this->getValidCurPage($curPage, $countPages);
 
         return new ResultPagination(
-            $countPages = $this->getCountPages($limitOnePage, $countRecords),
+            $countPages,
             $countRecords,
             $limitOnePage,
-            $curPage = $this->getValidCurPage($curPage, $countPages),
-            $this->getOffset($curPage, $countRecords, $limitOnePage),
+            $curPage,
+            $this->getOffset($curPage, $countPages, $limitOnePage),
             $this->nextPage($curPage, $countPages),
             $this->prevPage($curPage, $countPages),
             $this->isLastPage($curPage, $countPages),
@@ -27,15 +28,14 @@ final class Pagination
 
     public function nextPage(int $curPage, int $countPages): ?int
     {
-        $countPages = $this->prepareCountPages($countPages);
         $curPage    = $this->getValidCurPage($curPage, $countPages);
+        $countPages = $this->prepareCountPages($countPages);
         if ($curPage === $countPages || $countPages === 1) return null;
         return $curPage + 1;
     }
 
     public function prevPage(int $curPage, int $countPages): ?int
     {
-        $countPages = $this->prepareCountPages($countPages);
         $curPage    = $this->getValidCurPage($curPage, $countPages);
         if ($curPage === 1) return null;
         return $curPage - 1;
