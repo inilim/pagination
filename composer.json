@@ -1,23 +1,24 @@
 {
-  "name": "inilim/pagination",
-  "description": "Pagination helper",
-  "type": "library",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "Inilim\\Pagination\\": "src/"
+    "name": "inilim/pagination",
+    "description": "Pagination helper",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Inilim\\Pagination\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "inilim"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.4 | ^8.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "@stable"
     }
-  },
-  "authors": [
-    {
-      "name": "inilim"
-    }
-  ],
-  "minimum-stability": "dev",
-  "require": {
-    "php": "^8.2"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "@stable"
-  }
 }

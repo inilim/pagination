@@ -2,18 +2,85 @@
 
 namespace Inilim\Pagination;
 
-readonly class ResultPagination
+/**
+ * @psalm-readonly
+ */
+final class ResultPagination
 {
+    protected int $countPages;
+    protected int $countRecords;
+    protected int $limitOnePage;
+    protected int $curPage;
+    protected int $offset;
+    protected ?int $nextPage;
+    protected ?int $prevPage;
+    protected bool $isLastPage;
+    protected bool $isFirstPage;
+
     public function __construct(
-        public int $count_page,
-        public int $count_record,
-        public int $limit,
-        public int $cur_page,
-        public int $offset,
-        public ?int $next_page,
-        public ?int $prev_page,
-        public bool $is_last_page,
-        public bool $is_first_page,
+        int $countPages,
+        int $countRecords,
+        int $limitOnePage,
+        int $curPage,
+        int $offset,
+        ?int $nextPage,
+        ?int $prevPage,
+        bool $isLastPage,
+        bool $isFirstPage
     ) {
+        $this->countPages   = $countPages;
+        $this->countRecords = $countRecords;
+        $this->limitOnePage = $limitOnePage;
+        $this->curPage      = $curPage;
+        $this->offset       = $offset;
+        $this->nextPage     = $nextPage;
+        $this->prevPage     = $prevPage;
+        $this->isLastPage   = $isLastPage;
+        $this->isFirstPage  = $isFirstPage;
+    }
+
+    public function getCountPages(): int
+    {
+        return $this->countPages;
+    }
+
+    public function getCountRecords(): int
+    {
+        return $this->countRecords;
+    }
+
+    public function getLimitOnePage(): int
+    {
+        return $this->limitOnePage;
+    }
+
+    public function getCurPage(): int
+    {
+        return $this->curPage;
+    }
+
+    public function getOffset(): int
+    {
+        return $this->offset;
+    }
+
+    public function getNextPage(): ?int
+    {
+        return $this->nextPage;
+    }
+
+    public function getPrevPage(): ?int
+    {
+        return $this->prevPage;
+    }
+
+    public function isLastPage(): bool
+    {
+        return $this->isLastPage;
+    }
+
+    public function isFirstPage(): bool
+    {
+        return $this->isFirstPage;
     }
 }
