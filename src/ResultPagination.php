@@ -83,4 +83,22 @@ final class ResultPagination
     {
         return $this->isFirstPage;
     }
+
+    /**
+     * @return array{countPages:int,countRecords:int,limitOnePage:int,offset:int,curPage:int,nextPage:?int,prevPage:?int,isLastPage:bool,isFirstPage:bool}
+     */
+    public function toArray(): array
+    {
+        return [
+            'countPages'   => $this->countPages,
+            'countRecords' => $this->countRecords,
+            'limitOnePage' => $this->limitOnePage,
+            'offset'       => $this->offset,
+            'curPage'      => $this->curPage,
+            'nextPage'     => $this->nextPage,
+            'prevPage'     => $this->prevPage,
+            'isLastPage'   => $this->isLastPage,
+            'isFirstPage'  => $this->isFirstPage,
+        ];
+    }
 }
